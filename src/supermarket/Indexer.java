@@ -37,39 +37,44 @@ public class Indexer {
 		FileInputFormat.addInputPath(job, new Path(
 				"hdfs://localhost:54310/user/csdeptucy/input/supermarket"));
 		FileOutputFormat.setOutputPath(job, new Path(
-				"hdfs://localhost:54310/user/csdeptucy/output/supermarket"));
+				"hdfs://localhost:54310/user/csdeptucy/output/phase1"));
 	}
 
-	public void phase2(){
+	public void phase2(Configuration conf) throws IllegalArgumentException, IOException, ClassNotFoundException, InterruptedException{
 		
-		
-		System.exit(job.waitForCompletion(true) ? 0 : 1);
+		 	Job job = Job.getInstance(conf, "Phase 2");
+		    job.setJarByClass(Indexer.class);
+		    job.setOutputFormatClass(TextOutputFormat.class);
+
+		    job.setInputFormatClass(TextInputFormat.class);
+		    job.setOutputKeyClass( Text.class);
+		    job.setOutputValueClass(IntWritable.class);
+
+		    job.setMapperClass(MapperPhase2.class);
+		    job.setCombinerClass(ReducerPhase2.class);
+		    job.setReducerClass(ReducerPhase2.class);
+			
+			FileInputFormat.addInputPath(job, new Path(
+					"hdfs://localhost:54310/user/csdeptucy/output/phase1"));
+			FileOutputFormat.setOutputPath(job, new Path(
+					"hdfs://localhost:54310/user/csdeptucy/output/phase2"));
+			
+			System.exit(job.waitForCompletion(true) ? 0 : 1);
 	}
-	
-	
 	
 	
 	public static void main(String[] args) throws Exception {
 		Configuration conf = new Configuration();
-        
+        Indexer index = new Indexer();
 		
 		
-		phase1(conf);
+		index.phase1(conf);
 		
 		/******End of first phase********/
 		
-		phase2(conf);
-		
-		
+		index.phase2(conf);
 
-
-	
-
-	   // 
-		
-
-		/******END OF FIRST PHASE*******/
-		
+		/******End of second phase********/
 		
 	}
 }

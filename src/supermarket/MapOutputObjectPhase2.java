@@ -13,25 +13,25 @@ import org.apache.hadoop.io.Writable;
 
 public  class MapOutputObjectPhase2 implements Writable{
 	
-	private IntWritable index;
-	
-	public MapOutputObjectPhase2(int index){
-		
-		this.index = new IntWritable(index);
-	}
-	
-	
-	@Override
-	public void readFields(DataInput in) throws IOException {
-	
-		//tokens.out(out)
-		
+	private IntWritable support;
+	private Text rule;
+	public MapOutputObjectPhase2(Text rule,int index){
+		this.rule = rule;
+		this.support = new IntWritable(index);
 	}
 
 	@Override
-	public void write(DataOutput arg0) throws IOException {
-		// TODO Auto-generated method stub
-		
+	public void readFields(DataInput in) throws IOException {
+	
+		rule.readFields(in);
+		support.readFields(in);
+	}
+
+	@Override
+	public void write(DataOutput out) throws IOException {
+		rule.write(out);
+		support.write(out);
+			
 	}
 	
 	

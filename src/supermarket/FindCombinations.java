@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 class FindCombinations { 
 	public static ArrayList<ArrayList<String>> combs = new ArrayList<ArrayList<String>>();
-    static void combinationUtil(String arr[], int size, int r, int index, 
+    static void phase1Combinations(String arr[], int size, int r, int index, 
                                 String copy[], int i) 
     { 	
     	 if (index == r) 
@@ -52,12 +52,22 @@ class FindCombinations {
     	combs.clear(); 
     	for(int i = 1; i <=arr.length ;i++ ){
              String data[]=new String[i]; 
-         	 combinationUtil(arr, arr.length, i, 0, data, 0); 
+             phase1Combinations(arr, arr.length, i, 0, data, 0); 
          }
 
     	 return combs;
-       
     }
-    
+    public ArrayList<ArrayList<String>> ruleCombinations(ArrayList<String> fresh){
+    	
+    	combs.clear(); 
+    	for(int i = 0 ; i<fresh.size();i++){
+    		ArrayList<String> temp = new ArrayList<String>();
+    		temp = fresh;
+    		temp.remove(i);
+    		combs.add(temp);
+    	}
+    	return combs;
+    	
+    }
      
 } 

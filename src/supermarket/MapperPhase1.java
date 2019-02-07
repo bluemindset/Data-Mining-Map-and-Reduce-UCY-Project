@@ -38,8 +38,8 @@ public class MapperPhase1  extends Mapper<LongWritable, Text,Text,IntWritable> {
 	        	
 	        	//ArrayWritable arr = new ArrayWritable(combClass.GetStringArray(comb));
 	        	//System.out.println(comb.toString());
-	        	Text key1 = new Text(comb.toString());
-	       	   	context.write(key1,one);
+	        	Text keyText = new Text(comb.toString());
+	       	   	context.write(keyText,one);
 	        	
 	        }
 	        combs.clear();
