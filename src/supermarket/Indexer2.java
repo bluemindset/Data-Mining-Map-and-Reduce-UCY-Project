@@ -35,7 +35,6 @@ public class Indexer2 {
 	    job2.setOutputValueClass(Text.class);
 		
 	    job2.setMapperClass(MapperPhase2.class);
-	    job2.setCombinerClass(ReducerPhase2.class);
 	    job2.setReducerClass(ReducerPhase2.class);
 	    
 	    

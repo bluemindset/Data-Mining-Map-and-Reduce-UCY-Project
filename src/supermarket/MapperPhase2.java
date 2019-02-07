@@ -51,19 +51,6 @@ public class MapperPhase2  extends Mapper<LongWritable,Text,Text,Text> {
 
 		        	context.write(keyText,new Text(val.toString()));
 		        }
-	        }else {
-	        	
-	        	String keyText =combination;
-	        	StringBuilder val = new StringBuilder();
-	        	val.append(keyText+":"+support);
-	        	
-	        	Text valText = new Text(val.toString());
-	        	keyText.replace("0+", keyText);
-	        	StringBuilder keyT = new StringBuilder();
-	        	keyT.append("["+ keyText +"]");
-	        	System.out.println("Mapper Key is "+ keyText.toString()+"    "+valText.toString() );
-	        	context.write(new Text(keyT.toString()),valText);
-	        	
 	        }
 	        	
 
