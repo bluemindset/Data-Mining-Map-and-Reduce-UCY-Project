@@ -60,8 +60,7 @@ class FindCombinations {
     public ArrayList<ArrayList<String>> ruleCombinations(ArrayList<String> fresh){
     	combs.clear(); 
     	for(int i = 0 ; i<fresh.size();i++){
-    		ArrayList<String> temp = new ArrayList<String>();
-    		temp = fresh;
+    		ArrayList<String> temp = new ArrayList<String>(fresh);
     		temp.remove(i);
     		combs.add(temp);
     	}

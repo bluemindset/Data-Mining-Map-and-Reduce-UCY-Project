@@ -18,34 +18,33 @@ import supermarket.ReducerPhase1;
 
 
 
-public class Indexer {
+public class Indexer2 {
 
-
+	
+	
 	
 	public static void main(String[] args) throws Exception {
-		Configuration conf = new Configuration();
+		Configuration conf2 = new Configuration();
 
-		Job job = Job.getInstance(conf, "Phase 1");
+		Job job2 = Job.getInstance(conf2, "Phase 2");
+	    job2.setJarByClass(Indexer2.class);
+	    job2.setOutputFormatClass(TextOutputFormat.class);
 
-	    job.setJarByClass(Indexer.class);
-	    job.setOutputFormatClass(TextOutputFormat.class);
-
-	    job.setInputFormatClass(TextInputFormat.class);
-	    job.setOutputKeyClass( Text.class);
-	    job.setOutputValueClass(IntWritable.class);
-
-	    job.setMapperClass(MapperPhase1.class);
-	    job.setCombinerClass(ReducerPhase1.class);
-	    job.setReducerClass(ReducerPhase1.class);
+	    job2.setInputFormatClass(TextInputFormat.class);
+	    job2.setOutputKeyClass( Text.class);
+	    job2.setOutputValueClass(Text.class);
 		
-		FileInputFormat.addInputPath(job, new Path(
-				"hdfs://localhost:54310/user/csdeptucy/input/supermarket"));
-		FileOutputFormat.setOutputPath(job, new Path(
+	    job2.setMapperClass(MapperPhase2.class);
+	    job2.setCombinerClass(ReducerPhase2.class);
+	    job2.setReducerClass(ReducerPhase2.class);
+	    
+	    
+		FileInputFormat.addInputPath(job2, new Path(
 				"hdfs://localhost:54310/user/csdeptucy/output/phase1"));
-	
-	
-		System.exit(job.waitForCompletion(true) ? 0 : 1);
-
+		FileOutputFormat.setOutputPath(job2, new Path(
+				"hdfs://localhost:54310/user/csdeptucy/output/phase2"));
+	 	
+		System.exit(job2.waitForCompletion(true) ? 0 : 1);
 	}
 }
 

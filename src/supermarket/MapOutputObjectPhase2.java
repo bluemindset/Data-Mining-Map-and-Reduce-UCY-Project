@@ -43,6 +43,8 @@ public  class MapOutputObjectPhase2 implements Writable{
 		this.rule = new Text();
 	}
 	public MapOutputObjectPhase2(MapOutputObjectPhase2 obj){
+		this.support = new IntWritable();
+		this.rule = new Text();
 		this.support = obj.getSupport();
 		this.rule = obj.getRule();
 	}
@@ -58,9 +60,6 @@ public  class MapOutputObjectPhase2 implements Writable{
 		this.support = new IntWritable();
 		rule.write(out);
 		support.write(out);
-			
 	}
-	
-	
 
 }

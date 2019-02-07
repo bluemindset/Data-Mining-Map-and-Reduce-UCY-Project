@@ -21,6 +21,7 @@ public class ReducerPhase1  extends Reducer <Text, IntWritable, Text, IntWritabl
 		        for (IntWritable val : values) {
 		        	sum+=val.get();
 		        }
+		        if (sum>=2)
 		        context.write(key, new IntWritable(sum));
 		    }
 }

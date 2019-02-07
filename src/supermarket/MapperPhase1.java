@@ -30,7 +30,6 @@ public class MapperPhase1  extends Mapper<LongWritable, Text,Text,IntWritable> {
 	        while (tokenizer.hasMoreTokens()) {
 	        	tokens.add(tokenizer.nextToken());
 	        } 	
-	     //   System.out.print(tokens);
 	        combs =  combClass.exploitCombinations(tokens);
         	System.out.println(combs);
 
