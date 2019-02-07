@@ -29,8 +29,8 @@ class FindCombinations {
         return; 
         
         copy[index] = arr[i]; 
-        combinationUtil(arr, size, r, index+1, copy, i+1); 
-        combinationUtil(arr, size, r, index, copy, i+1); 
+        phase1Combinations(arr, size, r, index+1, copy, i+1); 
+        phase1Combinations(arr, size, r, index, copy, i+1); 
     } 
     public static String[] GetStringArray(ArrayList<String> arr) 
     { 
@@ -58,7 +58,6 @@ class FindCombinations {
     	 return combs;
     }
     public ArrayList<ArrayList<String>> ruleCombinations(ArrayList<String> fresh){
-    	
     	combs.clear(); 
     	for(int i = 0 ; i<fresh.size();i++){
     		ArrayList<String> temp = new ArrayList<String>();
@@ -69,5 +68,4 @@ class FindCombinations {
     	return combs;
     	
     }
-     
 } 

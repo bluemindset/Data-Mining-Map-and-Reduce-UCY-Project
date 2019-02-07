@@ -14,7 +14,13 @@ public class ReduceOutputObjectPhase2 implements Writable{
 	 */
 	private HashSet <MapOutputObjectPhase2> tokens = new HashSet<MapOutputObjectPhase2>();
 	
-	public ReduceOutputObjectPhase2(){
+	public ReduceOutputObjectPhase2(){}
+	
+	public ReduceOutputObjectPhase2(Iterable<MapOutputObjectPhase2> objs){
+		for(MapOutputObjectPhase2 obj :objs){
+			tokens.add(new MapOutputObjectPhase2(obj));
+		}
+		
 	}
 
 	@Override
