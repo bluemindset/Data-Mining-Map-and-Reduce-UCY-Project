@@ -34,13 +34,9 @@ public class MapperPhase1  extends Mapper<LongWritable, Text,Text,IntWritable> {
 	        combs =  combClass.exploitCombinations(tokens);
         	System.out.println(combs);
 
-	        for(ArrayList<String> comb :combs ){
-	        	
-	        	//ArrayWritable arr = new ArrayWritable(combClass.GetStringArray(comb));
-	        	//System.out.println(comb.toString());
+	        for(ArrayList<String> comb :combs ){	        	
 	        	Text keyText = new Text(comb.toString());
-	       	   	context.write(keyText,one);
-	        	
+	       	   	context.write(keyText,one);	 
 	        }
 	        combs.clear();
 	 }

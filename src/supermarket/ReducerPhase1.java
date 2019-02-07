@@ -23,8 +23,4 @@ public class ReducerPhase1  extends Reducer <Text, IntWritable, Text, IntWritabl
 		        }
 		        context.write(key, new IntWritable(sum));
 		    }
-	
-     
-	
-	
 }

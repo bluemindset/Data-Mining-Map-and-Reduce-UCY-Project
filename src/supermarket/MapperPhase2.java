@@ -23,6 +23,7 @@ public class MapperPhase2  extends Mapper<LongWritable,Text,Text,MapOutputObject
 		 	/* Strip it to the first token which is the array*/
 	        StringTokenizer tokenizer1 = new StringTokenizer(line,"/t");	        
 	        String combination = tokenizer1.nextToken();
+	        System.out.println(combination);
 	        int support = Integer.parseInt(tokenizer1.nextToken());
 	        /*Clean the string*/
 	        combination.replaceAll(" ","");
@@ -37,17 +38,22 @@ public class MapperPhase2  extends Mapper<LongWritable,Text,Text,MapOutputObject
 	        } 
 	        combs =  combClass.ruleCombinations(tokens);
 	        while (!combs.isEmpty()){
-	        	Text key = new Text(combination);
-	        	Text valText = new Text(combs.get(0).toString());
+	        	Text valText = new Text(combination);
+	        	Text keyText = new Text(combs.get(0).toString());
 	        	MapOutputObjectPhase2 val = new MapOutputObjectPhase2(valText,support);
 	        	combs.remove(0);
-	        	context.write(key,val);
+	        	context.write(keyText,val);
 	        }
-
-	       
-	       	   	
-	        	
 	        
+	        Text keyText = new Text(combination);
+	        Text valText = new Text("0");
+	        /*
+	         * Write the final combination of the basket
+	         * Give it support 0
+	         * */
+	        MapOutputObjectPhase2 val = new MapOutputObjectPhase2(valText,support);
+	        context.write(keyText,val);
+	     
 	        combs.clear();
 	 }
 }
