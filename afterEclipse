@@ -1,0 +1,19 @@
+#!/bin/bash
+
+
+echo "\n----OUTPUTS----";
+
+mkdir phase1_945470;
+mkdir phase2_945470;
+
+hadoop fs -copyToLocal /user/csdeptucy/output/phase1_945470/part-r-00000 $(pwd)/phase1_945470;
+hadoop fs -copyToLocal /user/csdeptucy/output/phase2_945470/part-r-00000 $(pwd)/phase2_945470;
+
+printf "\n\n----PHASE 1----\n\n";
+
+
+cat phase1_945470/part-r-00000;
+printf "\n\n----PHASE 2----\n\n";
+cat phase2_945470/part-r-00000;
+
+printf "\n\n----END OF OUTPUTS----\n\n";

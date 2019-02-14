@@ -33,15 +33,17 @@ public class Indexer {
 	    job.setInputFormatClass(TextInputFormat.class);
 	    job.setOutputKeyClass( Text.class);
 	    job.setOutputValueClass(IntWritable.class);
+		/*Different classes assigned for phase 1*/
 
 	    job.setMapperClass(MapperPhase1.class);
 	    job.setCombinerClass(ReducerPhase1.class);
 	    job.setReducerClass(ReducerPhase1.class);
-		
+	    
+	    /*Different paths added for phase 1*/
 		FileInputFormat.addInputPath(job, new Path(
-				"hdfs://localhost:54310/user/csdeptucy/input/supermarket"));
+				"hdfs://localhost:54310/user/csdeptucy/input/input_945470"));
 		FileOutputFormat.setOutputPath(job, new Path(
-				"hdfs://localhost:54310/user/csdeptucy/output/phase1"));
+				"hdfs://localhost:54310/user/csdeptucy/output/phase1_945470"));
 	
 		job.waitForCompletion(true);
 
@@ -51,42 +53,34 @@ public class Indexer {
 			Configuration conf2 = new Configuration();
 
 			Job job2 = Job.getInstance(conf2, "Phase 2");
-		    job2.setJarByClass(Indexer2.class);
+		    job2.setJarByClass(Indexer.class);
 		    job2.setOutputFormatClass(TextOutputFormat.class);
 
 		    job2.setInputFormatClass(TextInputFormat.class);
 		    job2.setOutputKeyClass( Text.class);
 		    job2.setOutputValueClass(Text.class);
-			
+			/*Different classes assigned for phase 2*/
 		    job2.setMapperClass(MapperPhase2.class);
 		    job2.setReducerClass(ReducerPhase2.class);
 		    
-		    
+		    /*Different paths added for phase 2*/
 			FileInputFormat.addInputPath(job2, new Path(
-					"hdfs://localhost:54310/user/csdeptucy/output/phase1"));
+					"hdfs://localhost:54310/user/csdeptucy/output/phase1_945470"));
 			FileOutputFormat.setOutputPath(job2, new Path(
-					"hdfs://localhost:54310/user/csdeptucy/output/phase2"));
+					"hdfs://localhost:54310/user/csdeptucy/output/phase2_945470"));
 		 	
-			System.exit(job2.waitForCompletion(true) ? 0 : 1);
+			job2.waitForCompletion(true);
 		}
 	
-	public void phase3() throws IOException{
-		
-		 BufferedReader br = new BufferedReader(new FileReader("hdfs://localhost:54310/user/csdeptucy/output/phase2/part-r-00000");
-"));
-		 String line = null;
-		 while ((line = br.readLine()) != null) {
-		   System.out.println(line);
-		 }
-		
-		
-	}
+
 	
 	public static void main(String[] args) throws Exception {
+		
 		Indexer i =  new Indexer();
+		/*Run the first phase */
 		i.phase1();
+		/*Run the second phase */
 		i.phase2();
-		i.phase3();
 	}
 
 	

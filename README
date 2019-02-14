@@ -1,0 +1,43 @@
+EPL 448 - Exercise 1
+
+Name : Stefanos Ioannou 
+ID : 945470
+EMAIL : sioann12@ucy.ac.cy
+Mobile : 99113894
+
+
+GUIDE:
+1) Please first run beforeEclipse.sh script that is found 
+inside the main project folder to create all neccesarry folders 
+for the input inside HDFS.
+
+2) Import the project in Eclipse and press RUN for Indexer class.
+
+3) Please run the afterEclipse.sh for viewing the data in terminal.
+It copies the data inside the local folder from HDFS and shows the two 
+phases.
+
+IF anything goes wrong ,please let me know.The procedure should work fine 
+with no errors! There is a results.png that shows how results should be printed 
+after running afterEclipse.sh script.
+
+Summary: 
+1)chmod 755 beforeEclipse.sh
+2)./beforeEclipse
+3)Eclipse -> import ->run INDEXER class
+4)chmod 755 afterEclipse.sh
+5)./afterEclipse
+
+Modular Design:
+For the two phases I used four classes two for mappers and two for reducers.
+Each class is named properly. 
+All four classes are being run throught an indexer as the example in the class.
+
+Documentation:
+Comments are added inside the project for explaning the procedure.
+
+Thank you!
+
+
+
+

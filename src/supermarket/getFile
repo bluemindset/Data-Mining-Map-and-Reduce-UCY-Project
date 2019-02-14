@@ -1,0 +1,4 @@
+
+#!/bin/bash
+
+hadoop fs -copyToLocal /user/csdeptucy/output/phase2/part-r-00000 /home/csdeptucy/Desktop/new

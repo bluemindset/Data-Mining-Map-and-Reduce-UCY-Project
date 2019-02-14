@@ -1,0 +1,11 @@
+
+#!/bin/bash
+
+/usr/local/hadoop/sbin./start-all.sh;
+
+hadoop fs -mkdir /user/csdeptucy/input/input_945470;
+
+hadoop fs -copyFromLocal input/supermarket_list.csv /user/csdeptucy/input/input_945470
+
+
+
